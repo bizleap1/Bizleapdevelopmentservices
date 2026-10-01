@@ -1,0 +1,162 @@
+.footer {
+  background-color: #ffffff;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .top {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.brandDesc {
+  font-family: 'Poppins', sans-serif !important;
+  color: var(--muted-grey);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.brand h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.column a {
+  font-size: 1rem;
+  color: var(--muted-grey);
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.column a:hover {
+  color: var(--accent-yellow);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  .bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted-grey);
+}
+
+.dot {
+  color: var(--muted-grey);
+}
+
+.socials a {
+  transition: color 0.3s ease;
+}
+
+.socials a:hover {
+  color: var(--accent-yellow);
+}
+
+.copyright {
+  font-size: 0.95rem;
+  color: var(--muted-grey);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 2rem;
+  }
+  .container {
+    gap: 2rem;
+  }
+  .top {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem 1.5rem;
+  }
+  .brand {
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .brandDesc {
+    max-width: 100%;
+  }
+  .column {
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.8rem;
+  }
+  .column a {
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .column:last-child {
+    grid-column: 1 / -1;
+  }
+  .bottom {
+    padding-top: 2rem;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .socials {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .copyright {
+    text-align: left;
+  }
+}
