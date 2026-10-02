@@ -29,7 +29,7 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Company</h4>
 
             <a href="/work">Our Work</a>
-            <a href="/process">Process</a>
+
             <a href="https://www.bizleap.in/contact">Contact</a>
           </div>
 

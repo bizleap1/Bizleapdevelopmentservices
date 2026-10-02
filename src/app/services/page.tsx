@@ -88,24 +88,24 @@ export default function ServicesPage() {
     <main className={styles.main}>
       <Navbar />
       
-      <section className={styles.heroSplit} style={{ minHeight: '100vh', backgroundColor: '#f5f2f1' }}>
+      <section className={`${styles.heroSplit} ${styles.servicesHero}`} style={{ minHeight: '100vh', backgroundColor: '#f5f2f1' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <Image 
             src="/images/94c6354f-1211-49bc-8953-58898d5f2dbb.png" 
             alt="Services Hero Background" 
             fill 
-            style={{ objectFit: 'contain', objectPosition: 'right 20%', transform: 'translateY(5vh)' }} 
+            className={styles.servicesHeroImage}
             priority
           />
         </div>
         <div className={styles.heroSplitGrid} style={{ minHeight: '100vh', alignItems: 'center' }}>
           <div className={styles.heroSplitLeft} style={{ padding: '0 5vw', justifyContent: 'center', height: '100%', paddingTop: '8rem' }}>
-            <h1 className={styles.heroSplitTitle} style={{ fontSize: 'clamp(3.5rem, 7vw, 5.5rem)', marginBottom: '1.5rem', lineHeight: '1' }}>
-              Our <span className={styles.accent}>Expertise.</span>
+            <h1 className={`${styles.heroSplitTitle} ${styles.servicesHeroTitle}`}>
+              <span>Our</span> <span className={styles.accent}>Expertise.</span>
             </h1>
-            <p className={styles.heroSplitSubline} style={{ maxWidth: '450px', fontSize: '1.15rem', marginLeft: '0.25rem' }}>We deliver end-to-end solutions that elevate brands, scale operations, and drive unmatched digital growth.</p>
+            <p className={`${styles.heroSplitSubline} ${styles.servicesHeroSubline}`} style={{ maxWidth: '450px', fontSize: '1.15rem', marginLeft: '0.25rem' }}>We deliver end-to-end solutions that elevate brands, scale operations, and drive unmatched digital growth.</p>
           </div>
-          <div></div>
+          <div className={styles.hiddenMobile}></div>
         </div>
       </section>
       

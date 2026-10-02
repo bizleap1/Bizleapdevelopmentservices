@@ -22,7 +22,7 @@ export default function Navbar() {
           <a href="/">Home</a>
           <a href="/work">Work</a>
           <a href="/services">Services</a>
-          <a href="/process">Process</a>
+
 
         </div>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
           <a href="/" onClick={() => setMobileMenuOpen(false)}>Home</a>
           <a href="/work" onClick={() => setMobileMenuOpen(false)}>Work</a>
           <a href="/services" onClick={() => setMobileMenuOpen(false)}>Services</a>
-          <a href="/process" onClick={() => setMobileMenuOpen(false)}>Process</a>
+
         </div>
       )}
     </nav>

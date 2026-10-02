@@ -283,31 +283,32 @@
     font-size: 2.25rem;
   }
   .workList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
   }
-  .workCard { margin-bottom: 0 !important; gap: 1.5rem !important; } .filterTabs { display: none !important; } .workVisual { aspect-ratio: 4/3; } .workVisual img { height: 100% !important; object-fit: cover !important; }
+  .workCard { margin-bottom: 0 !important; gap: 1.5rem !important; } .filterTabs { display: none !important; } .workVisual { aspect-ratio: 16/9; width: 100%; } .workVisual img { height: 100% !important; object-fit: cover !important; }
   .workTitle {
-    font-size: 1.5rem !important;
-    margin-bottom: 1rem;
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem;
   }
   .workDesc {
-    font-size: 0.85rem;
+    font-size: 1rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
   }
   .workTags {
-    gap: 0.4rem;
+    gap: 0.5rem;
     margin-bottom: 1rem;
   }
   .workTag {
-    font-size: 0.6rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
   }
   .viewBtn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    width: 100%;
   }
 }
 
