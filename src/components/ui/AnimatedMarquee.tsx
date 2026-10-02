@@ -20,7 +20,7 @@ export default function AnimatedMarquee({ items, title }: AnimatedMarqueeProps) 
           animate={{ x: [0, -1035] }}
           transition={{
             ease: 'linear',
-            duration: 20,
+            duration: 10,
             repeat: Infinity,
           }}
         >

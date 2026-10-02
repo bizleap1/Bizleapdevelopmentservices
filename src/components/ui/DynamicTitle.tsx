@@ -11,21 +11,58 @@ export default function DynamicTitle() {
     setOriginalTitle(document.title);
 
     const handleVisibilityChange = () => {
+      const links = document.querySelectorAll("link[rel~='icon']");
+      const transparentFavicon = 'data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
       if (document.hidden) {
+        // Change favicons to transparent
+        links.forEach((link: any) => {
+          if (!link.dataset.originalHref) {
+            link.dataset.originalHref = link.href;
+          }
+          link.href = transparentFavicon;
+        });
+
         let scrollText = '🥺 We are already missing u come back...   ';
         document.title = scrollText;
         
-        scrollInterval.current = setInterval(() => {
-          // Use Array.from to correctly handle emoji surrogate pairs so they don't break
+        // Use a Web Worker to bypass browser background tab throttling
+        const blob = new Blob([
+          `let interval;
+           self.addEventListener('message', (e) => {
+             if (e.data === 'start') {
+               interval = setInterval(() => self.postMessage('tick'), 100);
+             } else if (e.data === 'stop') {
+               clearInterval(interval);
+             }
+           });`
+        ], { type: 'application/javascript' });
+        
+        const workerUrl = URL.createObjectURL(blob);
+        const worker = new Worker(workerUrl);
+        scrollInterval.current = worker as any;
+        
+        worker.onmessage = () => {
           const chars = Array.from(scrollText);
           scrollText = chars.slice(1).join('') + chars[0];
           document.title = scrollText;
-        }, 150); // 150ms for a faster, smoother scroll effect
+        };
+        worker.postMessage('start');
+
       } else {
         if (scrollInterval.current) {
-          clearInterval(scrollInterval.current);
+          (scrollInterval.current as any).postMessage('stop');
+          (scrollInterval.current as any).terminate();
+          scrollInterval.current = null;
         }
         document.title = originalTitle || 'Bizleap | Digital Marketing & Web Development';
+
+        // Restore favicons
+        links.forEach((link: any) => {
+          if (link.dataset.originalHref) {
+            link.href = link.dataset.originalHref;
+          }
+        });
       }
     };
 
