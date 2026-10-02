@@ -31,7 +31,7 @@ export default function DynamicTitle() {
           `let interval;
            self.addEventListener('message', (e) => {
              if (e.data === 'start') {
-               interval = setInterval(() => self.postMessage('tick'), 100);
+               interval = setInterval(() => self.postMessage('tick'), 200);
              } else if (e.data === 'stop') {
                clearInterval(interval);
              }
