@@ -27,9 +27,9 @@ function LogoMarquee() {
     
     const scroll = (time: number) => {
       if (!isDragging.current) {
-        // Move by a consistent amount regardless of framerate (roughly 30px per sec)
+        // Move by a consistent amount regardless of framerate (roughly 80px per sec)
         const deltaTime = time - lastTime;
-        const moveAmount = (deltaTime / 1000) * 30;
+        const moveAmount = (deltaTime / 1000) * 80;
         
         el.scrollLeft += moveAmount;
         
@@ -123,7 +123,20 @@ function LogoMarquee() {
   );
 }
 
-const portfolioCategories = [
+interface PortfolioItem {
+  name: string;
+  desc: string;
+  tags: string;
+  img: string;
+  link: string;
+}
+
+interface PortfolioCategory {
+  category: string;
+  items: PortfolioItem[];
+}
+
+const portfolioCategories: PortfolioCategory[] = [
   {
     category: 'Clothing Brands',
     items: [
@@ -170,6 +183,10 @@ const portfolioCategories = [
       { name: 'Taubys', desc: 'Food & Bakery', tags: 'E-COMMERCE', img: '/websites by bizleap/websites by bizleap/Taubys home page.png', link: 'https://taubys.com/' },
       { name: 'MMM Hotels', desc: 'Hospitality', tags: 'CORPORATE', img: '/websites by bizleap/websites by bizleap/MMM home page.png', link: 'https://www.mmmhotels.com/' }
     ]
+  },
+  {
+    category: 'Real Estate',
+    items: []
   }
 ];
 
@@ -230,9 +247,9 @@ export default function Home() {
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
                 <MagneticWrapper>
-                  <Link href="https://www.bizleap.in/contact" className={styles.clayBtnPrimary}>
+                  <a href="mailto:bizleapinc@gmail.com" className={styles.clayBtnPrimary}>
                     Start a Project <ArrowRight size={18} />
-                  </Link>
+                  </a>
                 </MagneticWrapper>
                 <MagneticWrapper>
                   <Link href="/work" className={styles.clayBtnSecondary}>
@@ -313,7 +330,7 @@ export default function Home() {
               </ul>
               <div className={styles.serviceActions}>
                 <a href="/services" className={styles.btnPrimary}>Web Development Services <ArrowUpRight className={styles.btnIcon} /></a>
-                <a href="https://www.bizleap.in/contact" className={styles.btnSecondary}>Contact Now <ArrowUpRight className={styles.btnIcon} /></a>
+                <a href="mailto:bizleapinc@gmail.com" className={styles.btnSecondary}>Get In Touch <ArrowUpRight className={styles.btnIcon} /></a>
               </div>
             </div>
             <div className={styles.serviceVisual}>
@@ -347,7 +364,7 @@ export default function Home() {
               </ul>
               <div className={styles.serviceActions}>
                 <a href="/services" className={styles.btnPrimary}>App Development Services <ArrowRight className={styles.btnIcon} /></a>
-                <a href="https://www.bizleap.in/contact" className={styles.btnSecondary}>Contact Now <ArrowRight className={styles.btnIcon} /></a>
+                <a href="mailto:bizleapinc@gmail.com" className={styles.btnSecondary}>Get In Touch <ArrowRight className={styles.btnIcon} /></a>
               </div>
             </div>
             <div className={styles.serviceVisualMobileFirst}>
@@ -377,7 +394,7 @@ export default function Home() {
               </ul>
               <div className={styles.serviceActions}>
                 <a href="/services" className={styles.btnPrimary}>E-Commerce Solutions <ArrowRight className={styles.btnIcon} /></a>
-                <a href="https://www.bizleap.in/contact" className={styles.btnSecondary}>Contact Now <ArrowRight className={styles.btnIcon} /></a>
+                <a href="mailto:bizleapinc@gmail.com" className={styles.btnSecondary}>Get In Touch <ArrowRight className={styles.btnIcon} /></a>
               </div>
             </div>
             <div className={styles.serviceVisual}>
@@ -464,31 +481,40 @@ export default function Home() {
               </div>
 
               <div className={styles.workGrid}>
-                {(activeCategory === 'All' 
+                {((activeCategory === 'All' 
                   ? portfolioCategories.flatMap(c => c.items) 
                   : portfolioCategories.find(c => c.category === activeCategory)?.items || []
-                ).map((work, idx) => (
-                  <motion.div
-                    key={`${activeCategory}-${idx}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
-                  >
-                    <a href={work.link || '#'} target="_blank" rel="noopener noreferrer" className={styles.workCard}>
-                      <div className={styles.workImage}>
-                        <Image src={work.img} alt={work.name} fill sizes="(max-width: 768px) 100vw, 33vw" />
-                        <div className={styles.hoverBadge}>VIEW WEBSITE <ArrowUpRight size={16} /></div>
-                      </div>
-                      <div className={styles.workMeta}>
-                        <div>
-                          <h3 className={styles.workClient}>{work.name}</h3>
-                          <p className={styles.workDesc}>{work.desc}</p>
+                )).length > 0 ? (
+                  (activeCategory === 'All' 
+                    ? portfolioCategories.flatMap(c => c.items) 
+                    : portfolioCategories.find(c => c.category === activeCategory)?.items || []
+                  ).map((work, idx) => (
+                    <motion.div
+                      key={`${activeCategory}-${idx}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: (idx % 3) * 0.1 }}
+                    >
+                      <a href={work.link || '#'} target="_blank" rel="noopener noreferrer" className={styles.workCard}>
+                        <div className={styles.workImage}>
+                          <Image src={work.img} alt={work.name} fill sizes="(max-width: 768px) 100vw, 33vw" />
+                          <div className={styles.hoverBadge}>VIEW WEBSITE <ArrowUpRight size={16} /></div>
                         </div>
-                        <div className={styles.workTags}>{work.tags}</div>
-                      </div>
-                    </a>
-                  </motion.div>
-                ))}
+                        <div className={styles.workMeta}>
+                          <div>
+                            <h3 className={styles.workClient}>{work.name}</h3>
+                            <p className={styles.workDesc}>{work.desc}</p>
+                          </div>
+                          <div className={styles.workTags}>{work.tags}</div>
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))
+                ) : (
+                  <div style={{ textAlign: 'center', padding: '5rem 1rem', gridColumn: '1 / -1', color: 'var(--muted-grey)' }}>
+                    <p style={{ fontSize: '1.1rem', letterSpacing: '0.02em' }}>Projects in this category coming soon.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -603,7 +629,7 @@ export default function Home() {
 
             </div>
           </div>
-          <br /><br /><br />
+          
           {/* TECH STACK */}
           <AnimatedMarquee 
             title="Built with modern technology. Chosen for the right reasons." 
@@ -613,27 +639,25 @@ export default function Home() {
 
         <FAQSection />
 
-        {/* CTA */}
+        {/* FINAL CTA */}
         <motion.section 
-          id="contact" 
           className={styles.ctaSection}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="container">
-            <h2 className={styles.ctaTitle}>Have something<br />worth building?</h2>
-
+          <div className={styles.ctaContainer}>
+            <h2 className={styles.ctaTitle}>
+              Have something <br /> worth building?
+            </h2>
             <MagneticWrapper>
-              <Link href="https://www.bizleap.in/contact" className={styles.ctaButton}>
-                START A PROJECT <ArrowUpRight size={24} />
-              </Link>
+              <a href="mailto:bizleapinc@gmail.com" className={styles.ctaButton}>
+                START A PROJECT <ArrowUpRight size={18} strokeWidth={2.5} />
+              </a>
             </MagneticWrapper>
-
           </div>
         </motion.section>
-
       </main>
       
       <Footer />

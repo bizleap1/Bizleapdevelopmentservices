@@ -30,7 +30,20 @@ const workFaqs = [
   }
 ];
 
-const portfolioCategories = [
+interface PortfolioItem {
+  name: string;
+  desc: string;
+  tags: string;
+  img: string;
+  link: string;
+}
+
+interface PortfolioCategory {
+  category: string;
+  items: PortfolioItem[];
+}
+
+const portfolioCategories: PortfolioCategory[] = [
   {
     category: 'Clothing Brands',
     items: [
@@ -77,6 +90,10 @@ const portfolioCategories = [
       { name: 'Taubys', desc: 'Food & Bakery', tags: 'E-COMMERCE', img: '/websites by bizleap/websites by bizleap/Taubys home page.png', link: 'https://taubys.com/' },
       { name: 'MMM Hotels', desc: 'Hospitality', tags: 'CORPORATE', img: '/websites by bizleap/websites by bizleap/MMM home page.png', link: 'https://www.mmmhotels.com/' }
     ]
+  },
+  {
+    category: 'Real Estate',
+    items: []
   }
 ];
 
@@ -174,7 +191,8 @@ export default function WorkPage() {
         </div>
 
         <div className={styles.workList}>
-            {displayedWork.map((work, idx) => (
+          {displayedWork.length > 0 ? (
+            displayedWork.map((work, idx) => (
               <motion.div
                 key={`${activeCategory}-${work.name}`} // Re-animate on filter change
                 className={`${styles.workCard} ${idx % 2 === 0 ? styles.row : styles.rowReverse}`}
@@ -215,7 +233,12 @@ export default function WorkPage() {
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            ))
+          ) : (
+            <div style={{ textAlign: 'center', padding: '6rem 1rem', width: '100%', color: 'var(--muted-grey)' }}>
+              <p style={{ fontSize: '1.2rem', letterSpacing: '0.02em' }}>Projects in this category coming soon.</p>
+            </div>
+          )}
         </div>
       </section>
 

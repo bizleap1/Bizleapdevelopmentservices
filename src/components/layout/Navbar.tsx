@@ -19,18 +19,16 @@ export default function Navbar() {
         </div>
         
         <div className={styles.links}>
-          <a href="/">Home</a>
-          <a href="/work">Work</a>
-          <a href="/services">Services</a>
-
-
+          <Link href="/">Home</Link>
+          <Link href="/work">Work</Link>
+          <Link href="/services">Services</Link>
         </div>
 
         <div className={styles.ctaGroup}>
-          <a href="https://www.bizleap.in/contact" className={styles.secondaryButton}>
+          <a href="tel:+917097095152" className={styles.secondaryButton}>
             Let's Talk
           </a>
-          <a href="https://www.bizleap.in/contact" className={styles.primaryButton}>
+          <a href="mailto:bizleapinc@gmail.com" className={styles.primaryButton}>
             Start a Project <ArrowRight size={16} />
           </a>
           
@@ -47,10 +45,9 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className={styles.mobileMenu}>
-          <a href="/" onClick={() => setMobileMenuOpen(false)}>Home</a>
-          <a href="/work" onClick={() => setMobileMenuOpen(false)}>Work</a>
-          <a href="/services" onClick={() => setMobileMenuOpen(false)}>Services</a>
-
+          <Link href="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+          <Link href="/work" onClick={() => setMobileMenuOpen(false)}>Work</Link>
+          <Link href="/services" onClick={() => setMobileMenuOpen(false)}>Services</Link>
         </div>
       )}
     </nav>
